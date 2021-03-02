@@ -38,7 +38,7 @@ public class Problem3 {
 		
 		// init punctuation
 		// Source https://stackoverflow.com/questions/18410234/how-does-one-represent-the-empty-char/18410258
-		char punct = '\0';
+		String punct = "";
 		
 		// break word into array
 		char[] stringArr = convertStringToCharArray(wordToConvert);
@@ -74,7 +74,7 @@ public class Problem3 {
 				
 				// Determine if punctuation, if so append to punc item
 				if(contains(ch, punctuation)) {
-					punct = ch;
+					punct += String.valueOf(ch);
 				} else {
 					pigWord += ch;
 				}
@@ -103,7 +103,7 @@ public class Problem3 {
 				// specify which char is being operated on
 				char target = stringArr[i];
 				
-				if(i ==0 && target == Character.toUpperCase(target)) {
+				if(i == 0 && target == Character.toUpperCase(target)) {
 					// Dealing with upper-cased word
 					containsUpper = true;
 				}
@@ -124,18 +124,24 @@ public class Problem3 {
 						start += String.valueOf(Character.toUpperCase(target));
 					} else {
 						// continue to end of word
-						start += String.valueOf(target);
+						start += String.valueOf(Character.toLowerCase(target));
 					}
 					
 					
 				} else if(contains(Character.toLowerCase(target), punctuation)) {
 					// punctuation
-					punct = target;
+					punct += String.valueOf(target);
 					
 				} else if(contains(Character.toLowerCase(target), consonants)) {
 					// consonant
-					// append to "end string"
-					end += String.valueOf(Character.toLowerCase(target));
+					if(!isReadingStart) {
+						// append to "end string"
+						end += String.valueOf(Character.toLowerCase(target));
+					} else {
+						// continue to end of word
+						start += String.valueOf(Character.toLowerCase(target));
+					}
+					
 					
 				}
 				
