@@ -164,13 +164,28 @@ public class Problem3 {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter English word: ");
 		
-		String word = scan.next();
+		String phrase = scan.nextLine().toLowerCase();
 		scan.close();
 		
-		// TODO: Convert English word to Pig Latin
-		String pigWord = convertToPigLatin(word);
+		// Split phrase into words
+		String[] stringArr = phrase.split(" ");
+		
+		System.out.println(stringArr);
+		
+		String pigPhrase = "";
+		
+		for ( int i = 0 ; i < stringArr.length ; i ++ ){
+			String word = stringArr[i];
+					
+			// TODO: Convert English word to Pig Latin
+			String pigWord = convertToPigLatin(word);
+			
+			pigPhrase = pigPhrase + " " + pigWord;
+		}
+		
+		
 		// Print to console
-		System.out.println(word + " in Pig Latin is " + pigWord);
+		System.out.println(phrase + " in Pig Latin is " + pigPhrase);
 
 	}
 
